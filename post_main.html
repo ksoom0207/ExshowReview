@@ -17,40 +17,90 @@
     <div class="section-info">
     <h2 class="tltle">자유게시판</h2>
     </div>
-    <div class="section-post">
+
+    <div id="section-post">
+        
+        <div class="post-info-content"> 
+            <a id="main-text">메인문구</a>
+
+        <div class="post-change-area">
+            <div class="sort-area">
+                <a>인기순</a>
+                <a>최신순</a>
+            </div>
+
+            <div class="search-area">
+                <a>검색</a>
+                <div class="search-dropdown">
+                    <span class="search-dropbtn">선택</span>
+                    <div class="search-dropdown-content">
+                        <a href="#">아이디</a>
+                        <a href="#">제    목</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
         <div class="post-content">
-            <table>
+            <table class ="post-table">
                 <colgroup>
-                <col style = "width:28%">
-                <col style = "width:22%">
-            </colgroup>
+                <col style="width:60px;">
+                <col style="width:300px;">
+                <col style="width:100px;">
+                <col style="width:100px;">
+                <col style="width:60px;">
+                </colgroup>
             <thread>
-                <tr>번호</tr>
-                <tr>제목</tr>
-                <tr>작성날짜</tr>
-                <tr>작성자</tr>
+                <tr><th scope="col">번호</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">작성자</th>
+                    <th scope="col">작성 날짜</th>
+                    <th scope="col">조회수</th>
+                </tr>
             </thread>
             <tbody id = "post-list">
                 <tr>
                     <td> 1 </td>
-                    <td class = "title"> 안녕하세요 </td>
+                    <td class = "title"> 안녕하세요 감사해요 잘있어요 다시 만나요~! </td>
                     <td> ksoom0207 </td>
+                    <td> 21.05.14 </td>
+                    <td> 56 </td>
                 </tr>
                 <tr>
                     <td> 1 </td>
                     <td class = "title"> 안녕하세요 </td>
                     <td> ksoom0207 </td>
+                    <td> 21.05.14 </td>
+                    <td> 10 </td>
                 </tr>
                 <tr>
                     <td> 1 </td>
                     <td class = "title"> 안녕하세요 </td>
                     <td> ksoom0207 </td>
+                    <td> 21.05.14 </td>
+                    <td> 1 </td>
                 </tr>
 
             </tbody>
             </table>
+            <div class="post-paging">
+                <a class="paging-pre"><</a>
+                <span id="paging-num">
+                    <a>1</a>
+                    <a>2</a>
+                    <a>3</a>
+                </span>
+                <a class="paging-next">></a>
+            </div>
+                        
+            <div class="button-content">
+                <div class="write-button">
+                    <button a herf ="#" class="write">글쓰기</button></div>
+            </div>
+
         </div>
-    </div>
+
 </div>
 </main>
 <footer class ="footer-content">
@@ -60,9 +110,6 @@
     </div>
 
 </div>
-
 </footer>
 </body>
-
-
 </html>
