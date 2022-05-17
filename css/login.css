@@ -1,0 +1,45 @@
+.navigation-bar{
+    position:sticky;
+    height: 10px;
+}
+.menu{
+    font-size:32px;
+}
+h1{
+    font-weight:bold;
+    font-size:32px;
+}
+.login{
+   
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    
+    background-color: rgb(255, 251, 234);
+
+}
+label{
+    position: static;
+    font-size:16px;
+}
+input{
+    position: static;
+    width: 289px; height: 40px;
+    color: rgb(94, 94, 94); 
+    border-radius: 4px; 
+    border-width: 1px; 
+    border-style: solid; 
+    border-color: rgb(204, 204, 204); 
+    box-shadow: rgb(231, 76, 60) 0px 0px 0px 0px inset;
+  
+}
+
+.down-area{
+   
+}
+
+button{
+    position: absolute; top: 358px; left: 455px; width: 289px; height: 40px;
+    
+}
