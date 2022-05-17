@@ -4,7 +4,7 @@
 }
 .navigation-bar{
     margin: auto;
-    max-width: 1180px;
+    max-width: 1200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -45,6 +45,7 @@
 
 .category{
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
@@ -54,7 +55,7 @@
 }
 a{
     font-weight:bold;
-    font-size:12px;
+    font-size:15px;
 }
 .main-category-show{
     display: flex;
@@ -89,17 +90,12 @@ section{
     flex-wrap : wrap;
 }
 
-.category {
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+
 
 ul {
     list-style: none;
     margin: 0 auto;
-    padding: 0;
+
 }
 
 .culture-list{
@@ -109,8 +105,8 @@ ul {
 
 .culture-card-list {
     display: flex;
-    grid-gap: 20px;
-    gap: 20px;
+    grid-gap: 30px;
+    gap: 30px;
     flex-wrap: wrap;
     padding: 0;
 
@@ -121,9 +117,9 @@ ul {
     position: relative;
     flex-direction: column;
     justify-content: center;
-    padding: 50px 26px 26px 34px;
-    width: 250px;
-    height: 300px;
+    padding: 50px 10px 10px 30px;
+    width: 300px;
+    height: 350px;
     background: #fff;
     border: 2px solid #d1d1d1;
     border-radius: 30px;
@@ -131,7 +127,14 @@ ul {
     transition: .2s ease-in;
 }
 
+.culture-card{
+    margin: 0 auto;
+    width: 150px;
+    height: 200px;
+    justify-content: center;
+    border: 2px solid #d1d1d1;
 
+}
 .footer-content{
    
 }
