@@ -1,0 +1,92 @@
+main{
+    position: relative;
+    display: block;
+    float: none;
+    top: 10px;
+    width: 100%;
+    min-height: auto;
+    padding: 16px 15px 110px;
+    box-sizing: border-box;
+    z-index: 3;
+}
+/*
+    position:absolute;
+    display: flex;
+    float: left;
+    margin: 0;
+    padding: 0;
+    border: 0;*/
+
+.post-content{
+    position:absolute;
+    margin :0 auto;
+    padding: 0 10px;
+    width:1300px; 
+    height: 300px;
+   /* top: 50%; left:50%;*/
+ 
+}
+.post-info-content{
+    display: flex;
+    width:1300px; 
+    align-items: center;
+    justify-content: space-between;
+}
+.post-change-area {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search-dropdown{
+    position : relative;
+    display : inline-block;
+  }
+  
+  .search-dropdown-content{
+    width: 50px;
+    display : none;
+    position : absolute;
+    z-index : 1; /*다른 요소들보다 앞에 배치*/
+  }
+  
+  .search-dropdown-content a{
+    display : block;
+  }
+  
+  .search-dropdown:hover .search-dropdown-content {
+    display: block;
+  }
+table {
+    border-collapse: separate;
+    width:100%; 
+    text-indent: initial;
+    text-align: center;
+    border-spacing: 2px;
+    border-style: solid;
+    border-color: #767676;
+    border-top: 1px solid #767676;
+
+}
+th, td{
+    padding: 7px 5px;
+    text-align: center;
+}
+tr {
+
+    border-color: inherit;
+}
+.write-button{
+    float: right;
+    text-align: right;
+}
+button{
+   
+}
+#section-post .post-paging{
+     margin: 15px 0 0 0;
+}
+footer{
+    position:relative;
+    margin: 0 auto;
+}
