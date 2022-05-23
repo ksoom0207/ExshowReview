@@ -1,5 +1,5 @@
-
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,109 +8,123 @@
     <link rel="stylesheet" href="./css/post_main.css">
 
 </head>
+
 <body>
-<div class="navigation-var">
-    <header>
-    </header>
-</div>
-<main class = "main-content">
-<div class="main-inner">
-    <div class="section-info">
-    <h2 class="tltle">자유게시판</h2>
-    </div>
-
-    <div id="section-post">
-        
-        <div class="post-info-content"> 
-            <a id="main-text">메인문구</a>
-
-        <div class="post-change-area">
-            <div class="sort-area">
-                <a>인기순</a>
-                <a>최신순</a>
+    <div class="main-device">
+        <nav class="navigation-bar">
+            <a class="logo"> Exshowview </a>
+            <div class="menu-section-info">
+                <div class="menu review"> <a href="./culture_main.html">리뷰</a></div>
+                <div class="menu post"> <a href="#">자유게시판 </a></div>
             </div>
+        </nav>
 
-            <div class="search-area">
-                <a>검색</a>
-                <div class="search-dropdown">
-                    <span class="search-dropbtn">선택</span>
-                    <div class="search-dropdown-content">
-                        <a href="#">아이디</a>
-                        <a href="#">제    목</a>
-                    </div>
+        <main class="main-content">
+            <div class="main-inner">
+                <div class="section-info">
+                    <h2 class="tltle">자유게시판</h2>
                 </div>
+
+                <div id="section-post">
+
+                    <div class="post-info-content">
+                        <a id="main-text">메인문구</a>
+
+                        <div class="post-change-area">
+                            <div class="sort-area">
+                                <a>인기순</a>
+                                <a>최신순</a>
+                            </div>
+
+                            <div class="search-area">
+                                <a>검색</a>
+                                <div class="search-dropdown">
+                                    <span class="search-dropbtn">선택</span>
+                                    <div class="search-dropdown-content">
+                                        <a href="#">아이디</a>
+                                        <a href="#">제 목</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content_section issue">
+                                         <div class="thead_type01">
+                          <h3 class="title_type02">Current lssue</h3>
+                          <!-- e: selectBox -->
+                        </div>
+                        <!-- e: thead -->
+                        <!-- s: table -->
+                        <div class="table_type02">
+                          <table>
+                            <colgroup>
+                              <col style="width:5%;">
+                              <col>
+                              <col style="width:25%">
+                              <col style="width:10%">
+                              <col style="width:5%">
+                              <col style="width:5%">
+                            </colgroup>
+                            <thead>
+                              <tr>
+                                <th>No</th>
+                                <th>제목</th>
+                                <th>아이디</th>
+                                <th>업로드 날짜</th>
+                                <th>추천수</th>
+                                <th>조회수</th>
+                              </tr>
+                            </thead>
+                            <tbody class="post-table"><tr>
+                    <td>1</td>
+                    <td class="tal"><a href="javascript:void(0)" class="link01">테스트를 위한 테스트를 위한 등록</a></td>
+                    <td>test</td>
+                    <td>22-05-23</td>
+                    <td>10</td>
+                    <td>80</td>
+                  </tr><tr>
+                    <td>1</td>
+                    <td class="tal"><a href="javascript:void(0)" class="link01">테스트를 위한 테스트를 위한 등록</a></td>
+                    <td>test</td>
+                    <td>22-05-23</td>
+                    <td>10</td>
+                    <td>80</td>
+                  </tr>
+                  </tr></tbody>
+                          </table>
+                        </div>
+                        <!-- e: table -->
+                        <div class="nodata_type01" style="display:none;">
+                                  <p class="inner">해당 검색 결과가 없습니다.</p>
+                                </div>
+                      </div>
+              
+              
+              <div class="pagenavi_type01"><a href="javascript:;" data-pagename="page" data-pageno="1" class="btn first"><span>첫째 페이지</span></a>
+                <a href="javascript:;" data-pagename="page" data-pageno="1" class="btn prev"><span>이전 페이지</span></a><strong class="page">1</strong>
+                <a href="javascript:;" data-pagename="page" data-pageno="2" class="page on">2</a>
+                <a href="javascript:;" data-pagename="page" data-pageno="3" class="page on">3</a>
+                <a href="javascript:;" data-pagename="page" data-pageno="2" class="btn next"><span>다음 페이지</span></a><a href="javascript:;" data-pagename="page" data-pageno="174" class="btn end"><span>마지막 페이지</span></a></div>
+                        <div class="button-content">
+                            <div class="write-button">
+                                <button a herf="#" class="write">글쓰기</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+        </main>
+
+        <footer class="footer-content">
+            <div class="footer-inner">
+                <div class="footer-info">
+                    <span>라라라</span>
+                </div>
+
             </div>
-        </div>
-        </div>
-
-        <div class="post-content">
-            <table class ="post-table">
-                <colgroup>
-                <col style="width:60px;">
-                <col style="width:300px;">
-                <col style="width:100px;">
-                <col style="width:100px;">
-                <col style="width:60px;">
-                </colgroup>
-            <thread>
-                <tr><th scope="col">번호</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">작성자</th>
-                    <th scope="col">작성 날짜</th>
-                    <th scope="col">조회수</th>
-                </tr>
-            </thread>
-            <tbody id = "post-list">
-                <tr>
-                    <td> 1 </td>
-                    <td class = "title"> 안녕하세요 감사해요 잘있어요 다시 만나요~! </td>
-                    <td> ksoom0207 </td>
-                    <td> 21.05.14 </td>
-                    <td> 56 </td>
-                </tr>
-                <tr>
-                    <td> 1 </td>
-                    <td class = "title"> 안녕하세요 </td>
-                    <td> ksoom0207 </td>
-                    <td> 21.05.14 </td>
-                    <td> 10 </td>
-                </tr>
-                <tr>
-                    <td> 1 </td>
-                    <td class = "title"> 안녕하세요 </td>
-                    <td> ksoom0207 </td>
-                    <td> 21.05.14 </td>
-                    <td> 1 </td>
-                </tr>
-
-            </tbody>
-            </table>
-            <div class="post-paging">
-                <a class="paging-pre"><</a>
-                <span id="paging-num">
-                    <a>1</a>
-                    <a>2</a>
-                    <a>3</a>
-                </span>
-                <a class="paging-next">></a>
-            </div>
-                        
-            <div class="button-content">
-                <div class="write-button">
-                    <button a herf ="#" class="write">글쓰기</button></div>
-            </div>
-
-        </div>
-
-</div>
-</main>
-<footer class ="footer-content">
-<div class="footer-inner">
-    <div class="footer-info">
-        <span>라라라</span>
-    </div>
-
-</div>
-</footer>
+        </footer>
 </body>
+
 </html>
