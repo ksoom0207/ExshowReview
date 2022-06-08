@@ -7,46 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/culture_main.css">
+    <script type="module" src="../js/culture.js"></script>
 
 </head>
-
+<!---TODO: css표기법 검토 -->
 <body>
     <div class="main-device">
         <nav class="navigation-bar">
             <a class="logo"> Exshowview </a>
             <div class="menu-section-info">
-                
-                <div class="menu post"> 자유게시판 </div>
-                <div class="menu login-user"><a href="#"> 로그인</a> </div>
+                <div class="menu review"> <a href="./culture_main.html">리뷰</a></div>
+                <div class="menu post"> <a href="./post_main.html">자유게시판</a>  </div>
+                <div class="menu login-user"><a href="./login.html"> 로그인</a> </div>
             </div>
         </nav>
+
         <main class="section-main">
             <div class="title-area"> Write your review </div>
-            <a>다양한 행사에 리뷰를 남겨보세요</a>
-            <div class="section-main1">
+    <!---TODO: 클래스명 수정 / 표기법을 따를 것 / 표기법 찾아보고 적용-->
+            <div class="card-area">
                 <section class="category">
-                    <ul class="main-category">
-                        <il class ="tag">
+                    <ul class="tag-list">
+                        <il class ="tag all">
                             전체
                         </il>
-                        <il class ="tag">
+                        <il class ="tag music">
                             음악
                         </il>
-                        <il class ="tag">
+                        <il class ="tag art">
                             미술
                         </il>
-                        <il class ="tag">
+                        <il class ="tag theater">
                             연극
                         </il>
-                        <il class ="tag">
+                        <il class ="tag traditional_music">
                             국악
                         </il>
-                        <il class ="tag">
+                        <il class ="tag etc">
                             기타
                         </il>
                     </ul>
                     <div class="main-content-search">
-                        <select name="선택해세요" id="search-choose">
+                        <!---왜 class로 안하고 id로 썼는지?-->
+                        <select name="선택하세요" id="search-choose">
                             <option value="title">제목</option>
                             <option value="place">장소</option>
                         </select>
@@ -56,68 +59,22 @@
                 </section>
                 <div class="culture-list">
                     <div class="row1">
-                        <ul class="culture-card-list">
+                        <ul class="culture-card-list" id = "culture-card-list">
                             <li class="culture-item">
-                                <div class="title">제목영역</div>
+                                <div class="culture-title" >제목영역</div>
                                 <!-- 보이지 않게 하고 태그 터치시 보이도록만 설정--->
                                 <div class="tag">국악</div>
                                 <div class="culture-card" img="">썸네일 영역</div>
                                 <div class="culture-info">
                                     <p>2021.05.14~ </p>
-                                    <p>장소 : 어쩌구 저쩌구</p>
+                                    <p>장소 : </p>
                                 </div>
                                 <hr align="center"  style="border: solid 1px #b36f45">
                                 <div class="review-section">
                                     <p>후기1</p>
                                 </div>
                             </li>
-                            <li class="culture-item"><div class="title">제목영역</div>
-                                <div class="culture-card" img="">썸네일 영역</div>
-                                <div class="culture-info">
-                                    <p>2021.05.14~ </p>
-                                    <p>장소 : 어쩌구 저쩌구</p>
-                                </div>
-                                <div class="review-section">
-                                    <p>후기1</p>
-                                </div>
-                            </li><li class="culture-item"><div class="title">제목영역</div>
-                                <div class="culture-card" img="">썸네일 영역</div>
-                                <div class="culture-info">
-                                    <p>2021.05.14~ </p>
-                                    <p>장소 : 어쩌구 저쩌구</p>
-                                </div>
-                                <div class="review-section">
-                                    <p>후기1</p>
-                                </div>
-                            </li><li class="culture-item"><div class="title">제목영역</div>
-                                <div class="culture-card" img="">썸네일 영역</div>
-                                <div class="culture-info">
-                                    <p>2021.05.14~ </p>
-                                    <p>장소 : 어쩌구 저쩌구</p>
-                                </div>
-                                <div class="review-section">
-                                    <p>후기1</p>
-                                </div>
-                            </li>
-                            <li class="culture-item"><div class="title">제목영역</div>
-                                <div class="culture-card" img="">썸네일 영역</div>
-                                <div class="culture-info">
-                                    <p>2021.05.14~ </p>
-                                    <p>장소 : 어쩌구 저쩌구</p>
-                                </div>
-                                <div class="review-section">
-                                    <p>후기1</p>
-                                </div>
-                            </li><li class="culture-item"><div class="title">제목영역</div>
-                                <div class="culture-card" img="">썸네일 영역</div>
-                                <div class="culture-info">
-                                    <p>2021.05.14~ </p>
-                                    <p>장소 : 어쩌구 저쩌구</p>
-                                </div>
-                                <div class="review-section">
-                                    <p>후기1</p>
-                                </div>
-                            </li>
+                          
                         </ul>
                     </div>
                 </div>
