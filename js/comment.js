@@ -42,7 +42,7 @@ comment_json.forEach(item => {
         let reply_div = document.createElement("div");
         reply_div.setAttribute('class', 'sub');
         reply_div.classList.add('reply');
-        reply_div.addEventListener("click", reply_input_display);//setAttribute("onClick", "reply_input_display()");
+        reply_div.setAttribute('data-num', `${item.idx}`);
         reply_div.innerHTML = "답글";
 
         let modify_delete = document.createElement("div");
@@ -71,14 +71,14 @@ comment_json.forEach(item => {
         let reply_input_div = document.createElement("div");
         reply_input_div.setAttribute("class", "reply-input-section");
         reply_input_div.setAttribute("style", "display:none;");
+        reply_input_div.setAttribute('data-reply', item.idx);
         let reply_input = document.createElement("input");
-        reply_input.setAttribute("class", "reply-input");
-        //reply_input.setAttribute("style", "display:none;");
         reply_input_div.appendChild(reply_input);
 
         //등록버튼
         let reply_button = document.createElement("button");
         reply_button.setAttribute("class", "reply-button");
+        reply_button.setAttribute('data-button', item.idx);
         reply_button.innerHTML = "등록";
         reply_input_div.append(reply_button);
 
@@ -95,6 +95,8 @@ comment_json.forEach(item => {
         let sub_comment_div = document.createElement("div");
         sub_comment_div.setAttribute('class', 'comment');
         sub_comment_div.classList.add('sub');
+        sub_comment_div.setAttribute('id', item.idx); //idx를 각 요소의 class로 추가
+
         //id
         let comment_id = document.createElement("a");
         comment_id.setAttribute('class', 'id');
@@ -149,7 +151,37 @@ comment_json.forEach(item => {
 
 
 });
+//텍스트를 클릭할경우 상위 영역의 id 값을 갖고와서 그 하단 답글 버튼 활서오하?
 
-function reply_input_display() {
-    document.getElementsByClassName('reply-input-section')[0].setAttribute("style", "display:block;");
-}
+
+//클릭한 요소의 id를 갖고온다.
+//id의 숫자부부만 똑! 떼서 input 영역을 찾아서 활성화 시킨다
+
+// let reply_input_section = document.getElementsByClassName("reply-input-section");
+
+// comment_ul.addEventListener('click', (e) => {
+//     let idx_num;
+//     //input 영역의 dataset과 e.target의 dataset을 비교하여 일치할경우 활성화?
+//     Array.prototype.forEach.call(reply_input_section, (el) => {
+//         console.log(e.target.dataset.num);
+//         console.log(el);
+//         if (el.dataset.reply == e.target.dataset.num) {
+//             idx_num = el.dataset.reply;
+
+//             el.setAttribute("style", "display:block");
+//         }
+//         //document.getElementsById('reply-input' + e.target.dataset.num).setAttribute("display", "block");
+//     });
+
+//     if (idx_num == e.taget.dataset.button) {
+//         let reply_input = document.getElementsByClassName("input" + idx_num)[0];
+//         reply_submit(reply_input.value);
+//         comment_idx++;
+//         //이게 과연 맞는 로직일..까?
+
+//     }
+//     //답글 등록 버튼을 누르면 해당하는
+// })
+
+
+
