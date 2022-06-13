@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/culture_main.css">
+    <script type="module" src="../js/culture_detail.js"></script>
+
+</head>
+<!---TODO: css표기법 검토 -->
+
+<body>
+    <div class="main-device">
+        <nav class="navigation-bar">
+            <a class="logo"> Exshowview </a>
+            <div class="menu-section-info">
+                <div class="menu review"> <a href="./culture_main.html">리뷰</a></div>
+                <div class="menu post"> <a href="./post_main.html">자유게시판</a> </div>
+                <div class="menu login-user"><a href="./login.html"> 로그인</a> </div>
+            </div>
+        </nav>
+
+        <main class="section-main">
+            
+        <section class="post-section">
+            <div class="section title">
+                <h3 class="title" id="title">
+                    <span class="category"> </span> 
+                    <span class="tag"> </span> 
+                </h3>
+
+            </div>
+            <div class="section sub-data" id="sub"> <!---dl dt dd 형식으로 고려-->
+                <a>번호</a>
+                <div class="sub index"></div>
+                <a>시작날짜</a>
+                <div class="sub start-date"></div>
+                <a>종료날짜</a>
+                <div class="sub end-date"></div>
+                <a>장소</a>
+                <div class="sub place"></div>
+                <a>조회수</a>
+                <div class="sub view_count"></div>
+             
+            </div>
+            </div>
+            <div class="section culture-detail" id ="content">
+<!--썸네일 영역--->
+            </div>
+            <div class="section culture-button">
+                <div class="culture-list-top">
+                    <button class="post-list" onclick="location.href = './culture_main.html'">목록</button> <!-- herf를 위해 a태그를 넣어야 하나?-->
+                    <button class="top" onclick="">위로</button>
+                    <!--영어로 하면 안맞음-->
+                </div>
+            </div>
+            <div class="section comment" id ="comment">
+                <div class="comment-line">
+                    <div class="write">
+                        <form action="#" method="POST" id="comment-form">
+                            <div class="field">
+                                <input type="text" name="comment" id="comment-input" placeholder="리뷰를 남겨보세요!">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="write-button">
+                        <button class="comment-write" id="write" type="submit">등록</button>
+                    </div>
+                </div>
+                <!--댓글-->
+                <div class="list-area">
+                    <ul id ="comment-list">    
+                                   
+                    </ul>
+                </div>
+            </div>
+            <div class="page-navigate">
+           <div class="prev">
+                        <a href="#" class="ct">이전글</a>
+                    </div>
+            <div class="next">
+                        <a href="#" class="ct">다음글</a>
+                    </div>
+                </ul>
+            </div>
+        </section>
+        </main>
+    </div>
+</body>
