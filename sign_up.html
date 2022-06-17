@@ -1,56 +1,104 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/sign_up.css">
+   </head>
 
-</head>
 <body>
-    <div class="global">
-    <div class="navigation-bar">
-        <div class="menu"> Exshowview </div>
+    <div class="main-device">
+    <nav class="navigation-bar">
+        <a class="logo"> Exshowview </a>
+        <div class="menu-section-info">
+            <div class="menu review"> <a href="./culture_main.html">리뷰</a></div>
+            <div class="menu post"> <a href="#">자유게시판 </a></div>
+            <div class="menu"> 환영합니다 </div>
+        </div>
+    </nav>
+
+    <main class="sign_up-main">
+        <div id="wrapping" class="member">
+            <div class="sign_up-contents">
+                <div class="sign_up-header">
+                    <h1>회원가입</h1>
+                </div>
+                <div class="main_contents">
+                    <form action ="" method="POST" name="signup_form">
+                        <fieldset class="main_box_form">
+                            <div class="input_area">
+                                <label for="id">아이디</label>
+                                <input id="id" class="input_user_info" type="id" placeholder="아이디 입력" maxlength="20" required>
+                                <a class = "id" style="display:none"></a>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="main_box_form">
+                            <div class="input_area">
+                                <label for="password">비밀번호</label>
+                                <input id="password" class="input_user_info" type="password"
+                                    placeholder="영문, 숫자, 특수기호 포함 8자 이상 비밀번호 입력" maxlength="50" required>
+                            </div>
+                        </fieldset>
+                        <fieldset class="main_box_form">
+                            <div class="input_area">
+                                <label for="password-check">비밀번호 확인</label>
+                                <input id="password-check" class="input_user_info" type="password"
+                                    placeholder="영문, 숫자, 특수기호 포함 8자 이상 비밀번호 입력" maxlength="50">
+                            </div>
+                        </fieldset>
+                        <fieldset class="main_box_form">
+                            <div class="input_area">
+                                <label for="email">이메일</label>
+                                <input id="email" class="input_user_info" type="email" placeholder="example@example.com"
+                                    maxlength="100">
+                            </div>
+                        </fieldset>
+                        <fieldset class="main_box_form">
+                            <div class="input_area">
+                                <label for="name">이름</label>
+                                <input id="name" class="input_user_info" type="name">
+                            </div>
+                        </fieldset>
+                    </form>
+                    <div class="service-info">
+                        <span class="check-service-info">약관동의</span>
+                        <div class ="check_list">
+                            <label>
+                            <input type="checkbox" class="service-check" name="service-info1" value="service-info1"
+                                    >개인정보 처리방침 동의</label>
+                            <a href="./terms_and_conditions.html" class="full">전문보기</a>
+                        </div>
+                    
+
+                        <div class="main_btn_full" >
+                            <button class="main_btn_join bg1" id="sign_up_button" type="button" onclick="signup_check()">회원가입</button>
+                        </div>
+                        <div class="main_text">
+                            <a href="./login.html" class="bar">이미 회원이신가요?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     </div>
-    <div class="login">
-    <h1>로그인</h1>
-    </div>
-    <form>
-        <div class="form-id">
-            <label for ="id">아이디</label>
-            <input id="id" type="id">
+
+    <footer class="footer-content">
+        <div class="footer-inner">
+            <div class="footer-info">
+                <span>개인정보 처리방침 </span>
+                <span>개인정보 처리방침 </span>
+            </div>
+
         </div>
-        <div class="form-password">
-            <label for ="password">비밀번호</label>
-            <input id="password" type="password">
-        </div>
-        <div class="form-password-check">
-            <label for ="password-check">비밀번호 확인</label>
-            <input id="password" type="password">
-        </div>
-        <div class="form-email">
-            <label for ="email">이메일</label>
-            <input id="email" type="email">
-        </div>
-        <div class="form-name">
-            <label for ="name">이름</label>
-            <input id="name" type="name">
-        </div>
-        <div class="down-area">
-         <div class="service-info">
-              <span class = "check-service-info">서비스 정책</p></div>
-                <label><input type="checkbox" name="service-info1" value="service-info1" checked>개인정보 처리방침</label>
-                <label><input type="checkbox" name="service-info2" value="service-info2" checked></label>
-                <label><input type="checkbox" name="service-info3" value="service-info3" checked></label>
-         </div>  
-         <div class="login-button">
-            <button type="submit">회원가입</button>
-        </div>
-            <div class ="text">
-                <span class = "login text">이미 회원이신가요?</p>
-        </div>
-    </form>
-</div>
+
+    </footer>
+    <script type="text/javascript" src ="./js/sign_up.js"></script>
+
 </body>
+
 </html>
