@@ -1,38 +1,89 @@
-import post_data from "../json_data/post_main_data.json"  assert { type: "json" }
 
 let pagetnation_section = document.getElementById("pagenavi_type01");
 
-// 데이터 랜더링
-let json = JSON.parse(JSON.stringify(post_data));
-
 //현재 페이지 데이터를 백엔드로 요청해서 받아왔다. 
 let now_page = 1;
-let page_start = json.page_info[0].page_nation_start;
-let page_end = json.page_info[0].page_nation_end;
-let page_total = json.page_info[0].page_nation_total;
-let total_page = json.page_info[0].total_page;
-let content_page = json.page_info[0].content_page;
+let page_start;
+let page_end;
+let page_total;
+let total_page;
+let content_page;
+let post_content;
 
+
+
+async function fetch_method(url, options) {
+
+    const result = await fetch(url, options).then((response) => {
+
+        if (response.status === 400) {
+        }
+
+        if (response.status === 200) {
+            return response.json()
+            //reject된 값을 받으려면 await나 then을 써야
+            /* response.json().then((data) => {
+ 
+                 return data
+             })*/
+        };
+
+    }).then(data => {
+        return data
+    }).catch((error) => { console.log(error); });
+
+    return result;
+
+}
+
+
+let url = "http://localhost:3000/post/list?" + "page=" + now_page;
+let options = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+        "x-access-token": document.cookie
+    }
+}
+
+async function get_page_info() {
+
+    const data = await fetch_method(url, options);
+    return data
+
+}
+
+post_content = await get_page_info();
+console.log(post_content);
+page_start = post_content.page_list.page_nation_start;
+page_end = post_content.page_list.page_nation_end;
+page_total = post_content.page_list.page_nation_total;
+total_page = post_content.total_count;
+content_page = post_content.page_content_size;
+
+// TODO: comment_count 가 불러와지지 않음 => data_access
 
 const postlist_render = (page) => {
     let post_list = document.getElementById('post-list');
 
-    console.log(page);
     while (post_list.hasChildNodes()) {
         post_list.removeChild(post_list.lastChild);
     }
 
-    json.page_info[page - 1].contents.forEach((item) => {
+    post_content.contents.forEach((item) => {
         let tr = document.createElement("tr");
 
         let td_idx = document.createElement("td");
         td_idx.append(item.idx);
 
         let td_title = document.createElement("td");
-        td_title.setAttribute('class', 'post-title');
 
+        td_title.setAttribute('class', 'post-title');
+        td_title.setAttribute('data-post', item.idx);
 
         let a_post_link = document.createElement('a');
+
+        //location.href= "NewFile.jsp?name="+name+"&age="+age"
         a_post_link.setAttribute('herf', "./post_detail.html");
         let text_title = item.title + " [" + item.comment_count + "]";
         a_post_link.append(text_title);
@@ -41,11 +92,11 @@ const postlist_render = (page) => {
 
 
         let td_user_id = document.createElement("td");
-        let text_user_id = document.createTextNode(item.user_id);
+        let text_user_id = document.createTextNode(item.user.id);
         td_user_id.append(text_user_id);
 
         let td_upload_time = document.createElement("td");
-        let text_upload_time = document.createTextNode(item.upload_time);
+        let text_upload_time = document.createTextNode(item.created_at);
         td_upload_time.append(text_upload_time);
 
         let td_view = document.createElement("td");
@@ -67,8 +118,6 @@ const postlist_render = (page) => {
 
     });
 }
-
-
 const go_prev_page = () => {
     now_page -= content_page;
     postlist_render(now_page);
@@ -192,14 +241,17 @@ const make_button = (i) => {
 
 
 //페이지 네이션 초기 셋팅
-const renderContent = (now_page) => {
+const render_content = (now_page) => {
+
+
+
     //페이지가 노출된다
     postlist_render(now_page);
     //버튼이 바뀐다
     page_render(now_page);
 }
 
-renderContent(now_page);
+render_content(now_page);
 
 /*페이징 클릭 이벤트 */
 const my_div = document.getElementById('page_nation');
@@ -226,6 +278,22 @@ my_div.addEventListener('click', (e) => {
 
         e.target.classList.add("active");
         postlist_render(parseInt(e.target.dataset.num));
+        url = url + e.target.dataset.num;
     }
 
 })
+
+
+let post_list = document.getElementById('post-list');
+
+post_list.addEventListener("click", (e) => {
+    get_post_idx(parseInt(e.target.dataset.post));
+    location.href = "post_detail.html";
+})
+
+const get_post_idx = (post_idx) => {
+    return post_idx
+
+
+
+}
