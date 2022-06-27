@@ -26,7 +26,7 @@ function find_id_check() {
     }
 
     if (email.value == "") {
-        alert("비밀번호를 입력해주세요");
+        alert("이메일을 입력해주세요");
         email.focus();
         return false;
     }
@@ -44,6 +44,27 @@ function find_id_check() {
         if (response.status === 400) {
             response.json().then((data) => {
 
+                if (data === "write_name") {
+
+                    alert("이름을 입력해주세요");
+                    name.focus();
+                    return false;
+
+                }
+                if (data === "write_email") {
+                    alert("이메일을 입력해주세요");
+                    email.focus();
+                    return false;
+                }
+                if (data === "incorrect_email") {
+                    alert("잘못된 이메일 형식 입니다.");
+                    email.focus();
+                    return false;
+                }
+                if (data === "cannot_use_text") {
+                    alert("이름과 이메일을 다시 확인해주세요");
+                    return false;
+                }
                 if (data === "does_not_exist") {
                     alert("이름과 이메일을 다시 확인해주세요");
                     return false;
