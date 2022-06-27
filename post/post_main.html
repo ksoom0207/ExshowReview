@@ -1,0 +1,109 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/post_main.css">
+
+
+</head>
+
+<body>
+    <div class="main-device">
+        <nav class="navigation-bar">
+            <a class="logo"> Exshowview </a>
+            <div class="menu-section-info">
+                <div class="menu review"> <a href="./culture_main.html">리뷰</a></div>
+                <div class="menu post"> <a href="post_main.html">자유게시판 </a></div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="main-inner">
+                <div class="section-info">
+                    <h2 class="tltle">자유게시판</h2>
+                </div>
+
+                <div class="post-info-content">
+                    <a id="main-text">메인문구</a>
+
+                    <div class="post-change-area">
+                        <div class="sort-area">
+                            <a>인기순</a>
+                            <a>최신순</a>
+                        </div>
+                        <div class="search-area">
+                            <input class="search-input">
+                            <a>검색</a>
+                            <div class="search-dropdown">
+                                <a href="#" onclick=""><span class="search-dropbtn">선택</span></a>
+                                <ul class="search-dropdown-content">
+                                    <li><a href="#">아이디</a></li>
+                                    <li><a href="#">제 목</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content_section issue">
+                    <div class="table_type02">
+                        <table>
+                            <colgroup>
+                                <col style="width:5%;">
+                                <col>
+                                <col style="width:10%">
+                                <col style="width:10%">
+                                <col style="width:5%">
+                                <col style="width:5%">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>제목</th>
+                                    <th>아이디</th>
+                                    <th>업로드 날짜</th>
+                                    <th>추천수</th>
+                                    <th>조회수</th>
+                                </tr>
+                            </thead>
+                            <tbody id="post-list" class="post-table">
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="under-section">
+                        <div class="write-button-area">
+                            <button  onclick = "location.href = './post_write.html'" class="write">글쓰기</button>
+                        </div>
+
+                    <!-- e: table -->
+                    <div class="pagenation-area">
+                    <div class="nodata_type01" style="display:none;">
+                        <p class="inner">해당 검색 결과가 없습니다.</p>
+                    </div>
+                    <div id="pagenavi_type01">
+                     <div ic="page_nation"></div>
+                    </div>
+                </div>
+                </div>
+                </div>
+
+            </div>
+    </div>
+    </main>
+
+    <footer class="footer-content">
+        <div class="footer-inner">
+            <div class="footer-info">
+                <span>라라라</span>
+            </div>
+
+        </div>
+    </footer>
+    <script type="module" src="../js/post_main.js"> </script>
+</body>
+
+</html>
