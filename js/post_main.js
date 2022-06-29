@@ -1,4 +1,7 @@
 
+import { DEFAULT_POST_URL } from "../const_text.js";
+
+
 let pagetnation_section = document.getElementById("pagenavi_type01");
 
 //현재 페이지 데이터를 백엔드로 요청해서 받아왔다. 
@@ -37,7 +40,7 @@ async function fetch_method(url, options) {
 }
 
 
-let url = "http://localhost:3000/post/list?" + "page=" + now_page;
+let url = DEFAULT_POST_URL + "list?" + "page=" + now_page;
 let options = {
     method: "GET",
     headers: {
@@ -293,7 +296,6 @@ post_list.addEventListener("click", (e) => {
 
 const get_post_idx = (post_idx) => {
     return post_idx
-
 
 
 }
