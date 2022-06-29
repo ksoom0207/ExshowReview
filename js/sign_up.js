@@ -1,5 +1,8 @@
-import fs from "fs";
+// /import fs from "fs";
 // let sign_up_button = document.getElementById("sign_up_button");
+import { DEFAULT_URL } from "../const_text.js";
+
+import { DEFAULT_POST_URL } from "../const_text.js";
 
 function signup_check() {
     let id = document.getElementById("id");
@@ -23,10 +26,16 @@ function signup_check() {
         return false;
     }
 
-    let password_text = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+    let password_text = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/;
 
-    if (!password_text.test(password)) {
-        alert("비밀번호 영문자+숫자_특수문자 조합 8자리 이상 입력해주세요");
+    if (!password_text.test(password.value)) {
+        console.log(password_text.test(password));
+        alert("비밀번호 영문자+숫자+특수문자 조합 8자리 이상 입력해주세요");
+        password.focus();
+        return false;
+    }
+    if (id.value === password.value) {
+        alert("비밀번호 아이디랑 같을수 없습니다");
         password.focus();
         return false;
     }
@@ -45,7 +54,7 @@ function signup_check() {
         return false;
     }
 
-    if (!email_text.test(email)) {
+    if (!email_text.test(email.value)) {
         alert("이메일 형식을 확인해 주세요");
         email.focus();
         return false;
@@ -72,7 +81,7 @@ function signup_check() {
 
     //TODO: 상수화 필요한것 상수화 하기(상태코드, port)
     //
-    fetch("http://localhost:3000/user/signup", {
+    fetch(DEFAULT_URL + "signup", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -99,23 +108,24 @@ function signup_check() {
     }).catch((error) => {
         console.log(error);
     })
+}
 
 
 
-    function user_id_check() {
-        let id = document.getElementById("id");
+function user_id_check() {
+    let id = document.getElementById("id");
 
-        // id.value 값이 전송되어 갔다온다.
+    // id.value 값이 전송되어 갔다온다.
 
-        let login_flag = true;
-        if (login_flag) {
-            userid_msg.innerHTML = '사용할 수 있는 아이디입니다.';
-            userid_msg.style.color = 'green';
-        } else {
-            userid_msg.innerHTML = '이미 존재하는 아이디입니다.';
-            userid_msg.style.color = 'red';
-        }
-
+    let login_flag = true;
+    if (login_flag) {
+        userid_msg.innerHTML = '사용할 수 있는 아이디입니다.';
+        userid_msg.style.color = 'green';
+    } else {
+        userid_msg.innerHTML = '이미 존재하는 아이디입니다.';
+        userid_msg.style.color = 'red';
     }
 
-//sign_up_button.addEventListener("click", signup_check);
+}
+
+sign_up_button.addEventListener("click", signup_check);
