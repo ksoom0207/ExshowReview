@@ -1,8 +1,11 @@
 
 import { get_post_idx } from "./post_main.js"
+import { DEFAULT_POST_URL } from "../const_text.js";
 
-let post_idx;
-let url = "http://localhost:3000/post/" + post_idx;
+
+
+let post_idx = request.getParameter("post_idx");
+let url = DEFAULT_POST_URL + post_idx;
 let item;
 
 fetch(url, {
