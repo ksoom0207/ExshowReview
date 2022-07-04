@@ -27,7 +27,7 @@
     <!---TODO: 클래스명 수정 / 표기법을 따를 것 / 표기법 찾아보고 적용-->
             <div class="card-area">
                 <section class="category">
-                    <ul class="tag-list">
+                    <ul class="tag-list" id ="tag_list">
                         <il class ="tag all">
                             전체
                         </il>
@@ -54,13 +54,13 @@
                             <option value="place">장소</option>
                         </select>
                         <input type="text" id="search" name="search" required minlength="2" maxlength="20" size="10">
-                        <a>검색</a>
+                        <input type='button' id ="search-button" value="검색">
                     </div>
                 </section>
                 <div class="culture-list">
                     <div class="row1">
                         <ul class="culture-card-list" id = "culture-card-list">
-                            <li class="culture-item">
+                            <li class="culture-item"><a herf = "culture_detail.html"></a>
                                 <div class="culture-title" >제목영역</div>
                                 <!-- 보이지 않게 하고 태그 터치시 보이도록만 설정--->
                                 <div class="tag">국악</div>
@@ -69,7 +69,7 @@
                                     <p>2021.05.14~ </p>
                                     <p>장소 : </p>
                                 </div>
-                                <hr align="center"  style="border: solid 1px #b36f45">
+                                <hr align="center" style="border: solid 1px #b36f45">
                                 <div class="review-section">
                                     <p>후기1</p>
                                 </div>
@@ -81,13 +81,4 @@
             </div>
         </main>
     </div>
-    <footer class="footer-content">
-        <div class="footer-inner">
-            <div class="footer-info">
-                <span>라라라</span>
-            </div>
-
-        </div>
-
-    </footer>
 </body>
