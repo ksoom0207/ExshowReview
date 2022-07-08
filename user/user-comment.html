@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/user-comment.css">
+
+
+</head>
+<!---TODO: css표기법 검토 -->
+
+<body>
+  <div class="main-device">
+    <nav class="navigation-bar">
+      <a class="logo"> Exshowview </a>
+      <div class="menu-section-info">
+        <div class="menu review"> <a href="./culture_main.html">리뷰</a></div>
+        <div class="menu post"> <a href="../post_main.html">자유게시판</a> </div>
+      </div>
+    </nav>
+
+    <main class="user-info-section">
+      <div class="container">
+        <div class="sidebar">
+          <div class="mypage">
+            <span class="text-bold">마이페이지</span><span class="text-bold course-professor"></span>
+          </div>
+          <div class="content">
+            <ul class="sidebar-menu" id="sidebar-menu">
+              <li class="current_page">
+                <a href="./user-info.html"><span class="text" id="user_info">회원 정보</span></a>
+              </li>
+              <li>
+                <a href="./user-post.html"><span class="text" id="user_post">작성한 게시글</span></a>
+              </li>
+              <li>
+                <a href="#"><span class="text">작성한 댓글</span></a>
+              </li>
+              <li>
+                <a href="#"><span class="text">작성한 리뷰</span></a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <!---사이드바 메뉴 이동시 새로운 페이지 X js로 동적할당해야 함~ -->
+        <div class="content-section" id="content-section">
+          <section>
+
+          </section>
+          
+        </div>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="../js/user-comment.js"> </script>
+</body>
+
+</html>
