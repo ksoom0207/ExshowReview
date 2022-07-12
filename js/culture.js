@@ -32,6 +32,10 @@ const first_culture_render = () => {
         img.setAttribute("src", item.tumbnail);
         img.setAttribute("style", "width : 180px ; height : 240px");
         card.append(img);
+        let culture_a = document.createElement("a");
+        culture_a.setAttribute('herf', "./culture_detail.html");
+        card.append(culture_a);
+
 
         let info = document.createElement("div");
         info.setAttribute("class", "culture-info");
@@ -64,6 +68,7 @@ const first_culture_render = () => {
 
 }
 
+//태그별 렌더링
 const culture_render = (tag) => {
     while (culture_ul.hasChildNodes()) {
         culture_ul.removeChild(culture_ul.lastChild);
