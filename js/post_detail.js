@@ -3,7 +3,6 @@ import { get_post_idx } from "./post_main.js"
 import { DEFAULT_POST_URL } from "../const_text.js";
 
 
-
 let post_idx = request.getParameter("post_idx");
 let url = DEFAULT_POST_URL + post_idx;
 let item;
@@ -72,7 +71,7 @@ const delete_post = () => {
 
     //삭제 팝업을 띄운다
     if (/* 확인클릭시 */) {
-        let url = "http://localhost:3000/post/" + post_idx;
+        let url = DEFAULT_POST_URL + post_idx;
         let item;
 
         fetch(url, {
@@ -100,8 +99,6 @@ const delete_post = () => {
 
 //수정 버튼 클릭시 이벤트
 const modify_post = () => {
-    //삭제 팝업을 띄운다.
-    //확인 클릭시 api 요청을 보낸다.
 
     location.href = "post_write.html"
 
