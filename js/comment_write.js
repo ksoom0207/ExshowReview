@@ -23,6 +23,7 @@ function submit() {
     //content
     let comment_content = document.createElement("a");
     comment_content.setAttribute('class', 'content');
+    if (comment_input.value == "") return; //입력한 내용이 없을 경우
     let content = document.createTextNode(comment_input.value);
     comment_content.append(content);
 
@@ -158,7 +159,7 @@ function reply_submit(value) {
     //답글 영역 정의 하기
     let reply_input_div = document.createElement("div");
     reply_input_div.setAttribute("class", "reply-input");
-    reply_input_div.setAttribute("display", "none");
+    reply_input_div.setAttribute("style", "display:none");
     reply_input_div.setAttribute('data-reply', comment_idx);
     let reply_input = document.createElement("input");
     reply_input.setAttribute('class', `input${comment_idx}`);
@@ -206,6 +207,7 @@ let reply_input_section = document.getElementsByClassName("reply-input-section")
 let comment_ul = document.getElementById("comment-list");
 let idx_num;
 let reply_style;
+
 comment_ul.addEventListener('click', (e) => {
 
     //input 영역의 dataset과 e.target의 dataset을 비교하여 일치할경우 활성화?
@@ -214,23 +216,26 @@ comment_ul.addEventListener('click', (e) => {
 
         if (el.dataset.reply === e.target.dataset.num) {
             console.log(el.dataset.reply + '  ' + e.target.dataset.num);
-            console.log(reply_style);
             idx_num = el.dataset.reply; //해당하는 답글의 번호
             el.style.display = "block";
-            // el.setAttribute("style", "display:block");
-            reply_style = el.style.display; // dis
         }
-        //document.getElementsById('reply-input' + e.target.dataset.num).setAttribute("display", "block");
     });
 
-    if (idx_num == parseInt(e.target.dataset.button)) {
+    if (idx_num === e.target.dataset.button) {
 
-        reply_style = "none";
+        //e.target == class : reply 인 '답글' 영역}
         let reply_input = document.getElementsByClassName(`input${idx_num}`)[0];
+        if (reply_input.value == "") return; //입력한 내용이 없을 경우
+        Array.prototype.forEach.call(reply_input_section, (el) => {
+            el.style.display = "none";
+        });
+
         comment_idx++;
         reply_submit(reply_input.value);
+
         reply_input.value = "";
     }
+
     //답글 등록 버튼을 누르면 해당하는 
 
 })
