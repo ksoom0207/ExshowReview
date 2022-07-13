@@ -1,3 +1,6 @@
+import { DEFAULT_POST_URL, DEFAULT_COMMENT_URL } from "../const_text.js";
+
+
 let comment_write_button = document.getElementsByClassName("comment-write");
 let comment_input = document.getElementById("comment-input");
 
@@ -6,6 +9,40 @@ let comment_idx = 4;
 
 function submit() {
 
+
+    let url = DEFAULT_POST_URL + 'comment';
+
+    //result에서는 idx값 반환
+    let result = fetch(url, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "x-access-token": document.cookie
+        },
+        body: JSON.stringify(comment_input.value)
+
+    }).then((response) => {
+
+        if (response.status === 400) {
+            console.log(response.json);
+        }
+
+        if (response.status === 201) {
+            alert("댓글작성완료");
+        };
+        console.log(response);
+        return response.json().then((data) => {
+            return data;
+        });
+
+    }).catch((error) => {
+        console.log(error);
+
+    })
+
+
+    console.log(result);
+
     let comment_ul = document.getElementById("comment-list");
 
     //댓글
@@ -13,7 +50,7 @@ function submit() {
     let root_comment_div = document.createElement("div");
     root_comment_div.setAttribute('class', 'comment');
     root_comment_div.classList.add('root');
-    root_comment_div.setAttribute('id', comment_idx);
+    root_comment_div.setAttribute('id', result.idx);
     //id
     let comment_id = document.createElement("a");
     comment_id.setAttribute('class', 'id');
@@ -207,7 +244,6 @@ let reply_input_section = document.getElementsByClassName("reply-input-section")
 let comment_ul = document.getElementById("comment-list");
 let idx_num;
 let reply_style;
-
 comment_ul.addEventListener('click', (e) => {
 
     //input 영역의 dataset과 e.target의 dataset을 비교하여 일치할경우 활성화?
@@ -230,12 +266,9 @@ comment_ul.addEventListener('click', (e) => {
             el.style.display = "none";
         });
 
-        comment_idx++;
         reply_submit(reply_input.value);
-
         reply_input.value = "";
     }
-
     //답글 등록 버튼을 누르면 해당하는 
 
 })
