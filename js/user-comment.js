@@ -47,7 +47,7 @@ sidebar.addEventListener("click", (e) => {
 
 async function get_page_info(now_page) {
 
-    let url = DEFAULT_URL + "list?" + "page=" + now_page;
+    let url = DEFAULT_URL + "user_comment?" + "page=" + now_page;
     let options = {
         method: "GET",
         headers: {

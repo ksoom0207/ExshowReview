@@ -1,3 +1,4 @@
+import { DEFAULT_URL } from "../const_text.js";
 
 
 
