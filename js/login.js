@@ -48,15 +48,17 @@ function login_check() {
         }
 
         if (response.status === 200) {
-
-            response.json().then((data) => {
-                console.log(data);
-                document.cookie = data.access_token;
-                sessionStorage.setItem('user_idx', data.user_idx);
-                sessionStorage.setItem('isLogin', true);
-                alert("로그인성공");
-                location.href = "../post/post_main.html"
-            })
+            response.json()
+                .then((data) => {
+                    console.log(data.access_token)
+                    window.document.cookie = data.access_token + ';path=/';
+                    sessionStorage.setItem('access_token', document.cookie);
+                    sessionStorage.setItem('user_idx', data.user_idx);
+                    sessionStorage.setItem('isLogin', true);
+                    console.log(window.document.cookie);
+                    alert("로그인성공");
+                    location.href = "../post/post_main.html"
+                })
             //TODO: 로그인 후에는 로그인 페이지에 접속 안되도록 해야함
         };
 
