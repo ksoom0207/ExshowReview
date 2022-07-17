@@ -20,6 +20,9 @@ async function fetch_method(url, options) {
             alert("찾을수 없는 페이지 입니다")
         }
 
+        if (response.status === 204) {
+            return "deleted"
+        }
 
         if (response.status === 200) {
             console.log(response);
@@ -123,7 +126,7 @@ function delete_post_confirm() {
     };
 
     let result = fetch_method(url, options);
-    if (result) {
+    if (result === "deleted") {
         alert('게시글이 삭제되었습니다.');
         location.href = "post_main.html";
         return popuphide();
