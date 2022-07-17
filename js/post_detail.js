@@ -96,7 +96,23 @@ content.append(content_p);
 // 유저가 게시글을 작성한 유저라면?
 // 아니라면?
 
+let delete_button = document.getElementsByClassName('delete')[0];
+let modify_button = document.getElementsByClassName('modify')[0];
+
+// TODO: 현재 접속한 user id 추출 방법 찾기
+if (result.user_id !== result.now_user_id) {
+    delete_button.style.display = "none";
+    modify_button.style.display = "none";
+}
+
+//수정 버튼 클릭시 이벤트
+const modify_button_move = () => {
+    location.href = "post_modify.html";
+}
+modify_button.addEventListener("click", modify_button_move);
+
 //삭제 버튼 클릭시 이벤트
+
 const show_delete_post_pop = () => {
     let popup_section = document.getElementById('COMMON_POPUP_SECTION');
     popup_section.setAttribute('isshowing', 'ture');
@@ -104,15 +120,21 @@ const show_delete_post_pop = () => {
     popup_section.setAttribute('style', '');
 
 }
+delete_button.addEventListener("click", show_delete_post_pop);
+
+let exit_button = document.getElementsByClassName('c02')[0];
+
+
 
 function popuphide() {
     let popup_section = document.getElementById('COMMON_POPUP_SECTION');
-    let input_section = document.getElementsByTagName('input');
     popup_section.setAttribute('isshowing', 'false');
     popup_section.setAttribute('class', 'popup_container');
     popup_section.setAttribute('style', 'display:none');
 
 }
+exit_button.addEventListener("click", popuphide);
+
 
 function delete_post_confirm() {
 
@@ -129,7 +151,6 @@ function delete_post_confirm() {
     if (result === "deleted") {
         alert('게시글이 삭제되었습니다.');
         location.href = "post_main.html";
-        return popuphide();
     }
 
 }
