@@ -1,6 +1,7 @@
 
 import { DEFAULT_POST_URL } from "../const_text.js";
 
+console.log(document.cookie);
 
 let pagetnation_section = document.getElementById("pagenavi_type01");
 
@@ -39,17 +40,17 @@ async function fetch_method(url, options) {
 
 }
 
-
-let url = DEFAULT_POST_URL + "list?" + "page=" + now_page;
-let options = {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-        "x-access-token": document.cookie
-    }
-}
-
+console.log(document.cookie);
 async function get_page_info() {
+
+    let url = DEFAULT_POST_URL + "list?" + "page=" + now_page;
+    let options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "x-access-token": document.cookie
+        }
+    }
 
     const data = await fetch_method(url, options);
     return data
@@ -57,7 +58,7 @@ async function get_page_info() {
 }
 
 post_content = await get_page_info();
-console.log(post_content);
+
 page_start = post_content.page_list.page_nation_start;
 page_end = post_content.page_list.page_nation_end;
 page_total = post_content.page_list.page_nation_total;
@@ -82,14 +83,14 @@ const postlist_render = (page) => {
         let td_title = document.createElement("td");
 
         td_title.setAttribute('class', 'post-title');
-        td_title.setAttribute('data-post', item.idx);
 
         let a_post_link = document.createElement('a');
 
         //location.href= "NewFile.jsp?name="+name+"&age="+age"
-        a_post_link.setAttribute('herf', "./post_detail.html");
+        //  a_post_link.setAttribute('herf', "./post_detail.html");
         let text_title = item.title + " [" + item.comment_count + "]";
         a_post_link.append(text_title);
+        a_post_link.setAttribute('data-post', item.idx);
 
         td_title.append(a_post_link);
 
@@ -103,24 +104,38 @@ const postlist_render = (page) => {
         td_upload_time.append(text_upload_time);
 
         let td_view = document.createElement("td");
+        console.log(item.view_post_count)
         let text_view = document.createTextNode(item.view_post_count);
         td_view.append(text_view);
 
         let td_like = document.createElement("td");
-        let text_like = document.createTextNode(item.like_post_count);
+        let text_like = document.createTextNode(0);
         td_like.append(text_like);
 
         tr.append(td_idx);
         tr.append(td_title);
         tr.append(td_user_id);
         tr.append(td_upload_time);
-        tr.append(td_view);
         tr.append(td_like);
+        tr.append(td_view);
 
         post_list.append(tr);
 
     });
 }
+
+
+
+let post_list = document.getElementById('post-list');
+
+post_list.addEventListener("click", (e) => {
+
+    let post_idx = e.target.dataset.post;
+    console.log(e.target.dataset.post);
+    location.href = "post_detail.html?post_idx=" + post_idx;
+})
+
+
 const go_prev_page = () => {
     now_page -= content_page;
     postlist_render(now_page);
@@ -285,17 +300,3 @@ my_div.addEventListener('click', (e) => {
     }
 
 })
-
-
-let post_list = document.getElementById('post-list');
-
-post_list.addEventListener("click", (e) => {
-    get_post_idx(parseInt(e.target.dataset.post));
-    location.href = "post_detail.html";
-})
-
-const get_post_idx = (post_idx) => {
-    return post_idx
-
-
-}
