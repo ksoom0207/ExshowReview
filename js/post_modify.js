@@ -6,37 +6,59 @@ let post_modify_button = document.getElementById("post_modify_button");
 import { DEFAULT_POST_URL } from "../const_text.js";
 
 
-//수정일 경우 데이터 불러오기
-function post_data() {
+
+let url_str = window.location.href;
+const local_url = new URL(url_str);
+const urlParams = local_url.searchParams;
+const post_idx = urlParams.get('post_idx');
+
+
+async function fetch_method(url, options) {
+
+    const result = await fetch(url, options).then((response) => {
+
+        if (response.status === 400) {
+        }
+
+        if (response.status === 200) {
+            return response.json()
+            //reject된 값을 받으려면 await나 then을 써야
+            /* response.json().then((data) => {
+ 
+                 return data
+             })*/
+        };
+
+    }).then(data => {
+        return data
+    }).catch((error) => { console.log(error); });
+
+    return result;
+
+}
+
+
+async function get_post() {
+
 
     let url = DEFAULT_POST_URL + post_idx;
-    let item;
-
-    fetch(url, {
+    let options = {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
             "x-access-token": document.cookie
-        },
-
-    }).then((response) => {
-        if (response.status === 400) {
-            console.log("fail");
-            //페이지 이동
         }
+    }
 
-        if (response.status === 200) {
-            response.json().then((data) => {
-                title.value = data.title;
-                content.value = data.content;
-            })
-
-        };
-    }).catch((error) => { console.log(error); });
+    const data = await fetch_method(url, options);
+    return data
 
 }
 
-post_data();
+let data = await get_post();
+title.value = data.title;
+content.value = data.content;
+
 
 function post_check() {
     const post_write_data = {
@@ -54,28 +76,27 @@ function post_check() {
     }
 
     let url = DEFAULT_POST_URL + `write`
-    fetch(url, {
+    const options =
+    {
         method: "PATCH",
         headers: {
             "Accept": "application/json",
             "x-access-token": document.cookie
         },
         body: JSON.stringify(post_write_data)
+    }
 
-    }).then((response) => {
+    fetch(url, options).then((response) => {
 
         if (response.status === 400) {
             console.log(response.json);
         }
 
-        if (response.status === 201) {
+        if (response.status === 200) {
             alert("게시글 수정 완료");
-            location.href = "post_main.html";
+            //const data = await response.json()
+            location.href = "post_detail.html?post_idx=" + post_idx;
         };
-
-        return response.json().then((data) => {
-            console.log(data);
-        });
 
     }).catch((error) => {
         console.log(error);
@@ -85,3 +106,24 @@ function post_check() {
 }
 
 post_modify_button.addEventListener("click", post_check);
+
+/*
+
+
+    let url = DEFAULT_POST_URL + `write`
+    const options =
+    {
+        method: "PATCH",
+        headers: {
+            "Accept": "application/json",
+            "x-access-token": document.cookie
+        },
+        body: JSON.stringify(post_write_data)
+    }
+
+
+    const data = await fetch_method(url, options);
+    return data
+
+
+*/
