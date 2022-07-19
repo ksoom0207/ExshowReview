@@ -9,6 +9,7 @@ let content_section = document.getElementById("content-section");
 
 //TODO: 로컬/세션 스토리지 외 다른 방법 찾아보기
 let user_idx = parseInt(sessionStorage.getItem("user_idx"));
+
 async function fetch_method(url, options) {
   const result = fetch(url, options).then((response) => {
     if (response.status === 400) {
@@ -50,13 +51,14 @@ async function user_info_load() {
   content_section.innerHTML = str; //+ img_pop_html + pass_pop_html;
   let result = await fetch_method(user_info_url, options);
   console.log(result);
-  document.getElementsByClassName('user_id')[0].value = result.id;
+
+  Wdocument.getElementsByClassName('user_id')[0].value = result.id;
   document.getElementsByClassName('name')[0].value = result.name;
   document.getElementsByClassName('email')[0].value = result.email;
   let img_div = document.getElementById('image-show');
   let img = document.createElement('img');
   img.setAttribute("class", 'img-section');
-  console.log(result.user_photo)
+
   img.src = result.user_photo;
   img.style.width = "15rem";
   img.style.height = "15.5rem";
@@ -68,10 +70,11 @@ let modify_btn = document.getElementById("user-info-modify");
 //버튼 클릭시 활성, 비활성화
 modify_btn.addEventListener("click", input_box_info);
 
+let email_button = document.getElementById("email-modify");
+
 function input_box_info() {
 
   let email_info = document.getElementsByClassName('email')[0];
-  let email_button = document.getElementById("email-modify");
 
   switch (email_info.disabled) {
     case true: {
@@ -92,12 +95,40 @@ function input_box_info() {
   }
 }
 
+//이메일 수정 버튼 클릭시
+email_button.addEventListener("click", user_email_modify);
+
+async function user_email_modify() {
+
+  if (document.getElementsByClassName('email')[0].value === null) {
+    alert("email을 입력해주세요");
+  }
+
+  if (email_button.style.display === "block" && modify_btn.innerHTML === "회원정보 수정") {
+    let user_info_url = DEFAULT_URL + user_idx + '/info';
+    let options = {
+      method: "PATCH",
+      headers: {
+        "x-access-token": document.cookie
+      },
+      body: {
+        "email": document.getElementsByClassName('email')[0].value
+      }
+    };
+
+    await fetch_method(user_info_url, options);
+    alert("변경완료");
+  }
+  else return false;
+}
+
+
 //이미지 팝업
 let upload_pro = document.getElementById("upload-profile");
 let popup_container = document.getElementById('IMG-POPUP');
 
 function upload_pop() {
-  console.log("click")
+
   popup_container.classList.add('visible');
   popup_container.setAttribute('style', 'display:block');
 }
@@ -116,9 +147,7 @@ function load_file(input) {
   let name = document.getElementById('file_name');
   name.textContent = file.name;
   new_image.src = window.URL.createObjectURL(file);
-  console.log(new_image)
   //  new_image.style.display = "none";   //버튼을 누르기 전까지는 이미지를 숨긴다
-
 
 }
 
@@ -143,11 +172,13 @@ async function show_image() {
   let options = {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "x-access-token": document.cookie
     },
     body: JSON.stringify(user_photo)
 
   };
+
 
   let result = await fetch_method(user_photo_url, options);
 
@@ -255,8 +286,8 @@ function pwd_change_layout() {
   }
 }
 
-// let pwd_confirm = document.getElementsByClassName('c01')[0];
-pwd_cancel.addEventListener("click", pwd_change_layout);
+let pwd_confirm = document.getElementsByClassName('c01')[0];
+pwd_confirm.addEventListener("click", pwd_change_layout);
 
 
 //공통모듈
@@ -282,18 +313,3 @@ sidebar.addEventListener("click", (e) => {
   }
 
 })
-
-
-// ///////////////////////////////레이어 팝업
-// //회원정보에 데이터 넣기
-
-// const render_content = () => {
-//   user_info_load();
-
-// }
-
-// render_content();
-// */
-
-// //////////////////
-
