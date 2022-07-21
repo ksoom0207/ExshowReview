@@ -1,4 +1,65 @@
 import comment_data from "../json_data/comment.json"  assert { type: "json" }
+import { DEFAULT_POST_URL } from "../const_text.js";
+
+
+let url_str = window.location.href;
+const local_url = new URL(url_str);
+const urlParams = local_url.searchParams;
+const post_idx = urlParams.get('post_idx');
+
+async function fetch_method(url, options) {
+
+    const result = await fetch(url, options).then((response) => {
+
+        if (response.status === 400) {
+
+            console.log(response);
+        }
+        if (response.status === 404) {
+
+            alert("찾을수 없는 페이지 입니다")
+        }
+
+        if (response.status === 204) {
+            return "deleted"
+        }
+
+        if (response.status === 200) {
+            console.log(response);
+            return response.json()
+
+        };
+
+    }).then(data => {
+        console.log(data);
+        return data
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    return result;
+
+}
+
+async function get_comments_info() {
+
+    let url = DEFAULT_POST_URL + post_idx + '/comment';
+    let options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "x-access-token": document.cookie
+        }
+    }
+
+    const data = await fetch_method(url, options);
+    return data
+
+}
+
+let result = await get_comments_info();
+
+
 
 let comment_json = JSON.parse(JSON.stringify(comment_data));
 
@@ -9,31 +70,31 @@ let comment_ul = document.getElementById("comment-list");
 comment_json.forEach(item => {
 
     //댓글
-    if (item.comment_parent_idx === 0) {
+    if (result.comment_parent_idx === 0) {
         let comment_li = document.createElement("li");
         let root_comment_div = document.createElement("div");
         root_comment_div.setAttribute('class', 'comment');
         root_comment_div.classList.add('root');
-        root_comment_div.setAttribute('id', item.idx); //idx를 각 요소의 class로 추가
+        root_comment_div.setAttribute('id', result.idx); //idx를 각 요소의 class로 추가
 
 
         //id
         let comment_id = document.createElement("a");
         comment_id.setAttribute('class', 'id');
-        let id = document.createTextNode(item.user_id);
+        let id = document.createTextNode(result.user_id);
         comment_id.append(id);
 
         //content
         let comment_content = document.createElement("a");
         comment_content.setAttribute('class', 'content');
-        let content = document.createTextNode(item.content);
+        let content = document.createTextNode(result.content);
         comment_content.append(content);
 
         //date
         let date_div = document.createElement("div");
         let comment_date = document.createElement("a");
         comment_date.setAttribute('class', 'date');
-        let date = document.createTextNode(item.upload_date);
+        let date = document.createTextNode(result.upload_date);
         comment_date.append(date);
         date_div.append(comment_date);
 
@@ -42,7 +103,7 @@ comment_json.forEach(item => {
         let reply_div = document.createElement("div");
         reply_div.setAttribute('class', 'sub');
         reply_div.classList.add('reply');
-        reply_div.setAttribute('data-num', `${item.idx}`);
+        reply_div.setAttribute('data-num', `${result.idx}`);
         reply_div.innerHTML = "답글";
 
         let modify_delete = document.createElement("div");
@@ -71,14 +132,14 @@ comment_json.forEach(item => {
         let reply_input_div = document.createElement("div");
         reply_input_div.setAttribute("class", "reply-input-section");
         reply_input_div.setAttribute("style", "display:none;");
-        reply_input_div.setAttribute('data-reply', item.idx);
+        reply_input_div.setAttribute('data-reply', result.idx);
         let reply_input = document.createElement("input");
         reply_input_div.appendChild(reply_input);
 
         //등록버튼
         let reply_button = document.createElement("button");
         reply_button.setAttribute("class", "reply-button");
-        reply_button.setAttribute('data-button', item.idx);
+        reply_button.setAttribute('data-button', result.idx);
         reply_button.innerHTML = "등록";
         reply_input_div.append(reply_button);
 
@@ -89,32 +150,32 @@ comment_json.forEach(item => {
     }
 
     //대댓글
-    if (item.comment_parent_idx !== 0) {
+    if (result.comment_parent_idx !== 0) {
 
         let comment_li = document.createElement("li");
         let sub_comment_div = document.createElement("div");
         sub_comment_div.setAttribute('class', 'comment');
         sub_comment_div.classList.add('sub');
-        sub_comment_div.setAttribute('id', item.idx); //idx를 각 요소의 class로 추가
+        sub_comment_div.setAttribute('id', result.idx); //idx를 각 요소의 class로 추가
 
         //id
         let comment_id = document.createElement("a");
         comment_id.setAttribute('class', 'id');
         comment_id.innerHTML = "ㄴ";
-        let id = document.createTextNode(item.user_id);
+        let id = document.createTextNode(result.user_id);
         comment_id.append(id);
 
         //content
         let comment_content = document.createElement("a");
         comment_content.setAttribute('class', 'content');
-        let content = document.createTextNode(item.content);
+        let content = document.createTextNode(result.content);
         comment_content.append(content);
 
         //date
         let date_div = document.createElement("div");
         let comment_date = document.createElement("a");
         comment_date.setAttribute('class', 'date');
-        let date = document.createTextNode(item.upload_date);
+        let date = document.createTextNode(result.upload_date);
         comment_date.append(date);
         date_div.append(comment_date);
 
