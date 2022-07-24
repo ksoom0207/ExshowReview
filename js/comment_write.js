@@ -286,13 +286,12 @@ function reply_result(result) {
 
 
 //답글 등록버튼
-
-
 let reply_input_section = document.getElementsByClassName("reply-input-section");
 
 let comment_ul = document.getElementById("comment-list");
 let idx_num;
 let reply_style;
+
 comment_ul.addEventListener('click', (e) => {
 
     //input 영역의 dataset과 e.target의 dataset을 비교하여 일치할경우 활성화?
@@ -320,8 +319,24 @@ comment_ul.addEventListener('click', (e) => {
         }
         reply_input.value = "";
     }
-    //답글 등록 버튼을 누르면 해당하는 
-    e.target.class === "modify"
+
+    if (e.target.class === "modify") {
+        //해당하는 댓글의 영역 -> input 박스로 변경
+        let reply_input_section = document.getElementById(`${e.target.dataset.content}`);
+        let comment_content = document.getElementsByClassName(`content${e.target.dataset.content}`);
+        comment_content.style.display = "none";
+        let modify_input = document.createElement("comment-modify-form");
+        modify_input.setAttribute("input", "comment-modify-input");
+        modify_input.setAttribute('data-button', result.idx);
+        reply_input_section.append(modify_input);
+        /*
+         let modify_button = document.getElementsByClassName("modify");
+         modify_button.innerHTML = "등록";
+         
+        */
+        reply_input_div.append(reply_button);
+
+    }
 })
 
 //수정 버튼 선택할 경우 => 해당 하는 영역 활성화
