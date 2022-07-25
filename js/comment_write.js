@@ -44,7 +44,9 @@ async function fetch_method(url, options) {
 
 async function submit(content) {
 
-
+    const content = {
+        "content": content
+    }
     let url = DEFAULT_POST_URL + post_idx + '/comment';
     //result에서는 idx값 반환
     let options = {
@@ -176,6 +178,12 @@ function submit_result(submit_result_data) {
 }
 
 async function reply_submit(comment_idx, content) {
+
+
+    const content = {
+        "content": content
+    }
+
 
     let url = DEFAULT_POST_URL + post_idx + '/comment' + '/' + comment_idx;
     //result에서는 idx값 반환
@@ -320,24 +328,69 @@ comment_ul.addEventListener('click', (e) => {
         reply_input.value = "";
     }
 
+})
+
+comment_ul.addEventListener('click', (e) => {
+
     if (e.target.class === "modify") {
         //해당하는 댓글의 영역 -> input 박스로 변경
+        let comment_idx = e.target.dataset.content;
         let reply_input_section = document.getElementById(`${e.target.dataset.content}`);
         let comment_content = document.getElementsByClassName(`content${e.target.dataset.content}`);
+        //댓글 숨김처리
         comment_content.style.display = "none";
+        //input 영역 새로 생성
         let modify_input = document.createElement("comment-modify-form");
         modify_input.setAttribute("input", "comment-modify-input");
-        modify_input.setAttribute('data-button', result.idx);
+        // modify_input.setAttribute('data-button', e.target.dataset.content);
         reply_input_section.append(modify_input);
-        /*
-         let modify_button = document.getElementsByClassName("modify");
-         modify_button.innerHTML = "등록";
-         
-        */
-        reply_input_div.append(reply_button);
+        // 수정할 텍스트 
+        modify_input.value = comment_content.value;
+
+        //수정 텍스트 => 등록으로 변경
+        let modify_text = document.getElementsByClassName(`modify${e.target.dataset.content}`);
+        modify_text.innerHTML = "등록"
+
+        const content = {
+            "content": modify_input.value
+        }
+
+        modify_text.addEventListener("click", (event) => {
+            let submit_result_data = await modify_submit(comment_idx, content);
+            // submit_result_data가 정상이면 알럿 
+        })
+
 
     }
 })
+
+
+
+
+async function modify_submit(comment_idx, content) {
+
+
+    let url = DEFAULT_POST_URL + post_idx + '/comment/' + comment_idx;
+    //result에서는 idx값 반환
+    let options = {
+        method: "PATCH",
+        headers: {
+            "Accept": "application/json",
+            "x-access-token": document.cookie
+        },
+        body: JSON.stringify(content)
+
+    }
+
+    const data = await fetch_method(url, options);
+    return data
+    /*
+      return 값 => idx, user_id, content, parent_idx,created_at 필요
+       */
+
+}
+
+
 
 //수정 버튼 선택할 경우 => 해당 하는 영역 활성화
 
