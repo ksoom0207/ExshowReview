@@ -86,7 +86,8 @@ comment_json.forEach(item => {
 
         //content
         let comment_content = document.createElement("a");
-        comment_content.setAttribute('class', 'content');
+        comment_content.setAttribute('class', 'content' + `${result.idx}`);
+        reply_div.setAttribute('data-content', `${result.idx}`);
         let content = document.createTextNode(result.content);
         comment_content.append(content);
 
@@ -94,7 +95,7 @@ comment_json.forEach(item => {
         let date_div = document.createElement("div");
         let comment_date = document.createElement("a");
         comment_date.setAttribute('class', 'date');
-        let date = document.createTextNode(result.upload_date);
+        let date = document.createTextNode(result.created_at);
         comment_date.append(date);
         date_div.append(comment_date);
 
@@ -111,7 +112,7 @@ comment_json.forEach(item => {
         modify_delete.classList.add('modify-delete');
 
         let modify = document.createElement("div");
-        modify.setAttribute("class", "modify");
+        modify.setAttribute("class", "modify" + `${result.idx}`);
         modify.innerHTML = "수정";
         modify_delete.append(modify);
 
