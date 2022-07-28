@@ -351,23 +351,30 @@ comment_ul.addEventListener('click', (e) => {
         let modify_text = document.getElementsByClassName(`modify${e.target.dataset.content}`);
         modify_text.innerHTML = "등록"
 
+        //'취소' 텍스트 = 수정취소
         let modify_cancel = document.createElement("div");
         modify_cancel.setAttribute("class", "cancel" + `${result.idx}`);
         modify_cancel.innerHTML = "취소";
+        reply_input_section.append(modify_cancel);
 
         modify_cancel.addEventListener("click", (event) => {
             modify_input.style.display = "none";
             comment_content.style.display = "block";
+            modify_cancel.sytle.display = "none";
+            modify_text.innerHTML = "등록";
         })
 
         const content = {
             "content": modify_input.value
         }
 
-        modify_text.addEventListener("click", (event) => {
-            let submit_result_data = await modify_submit(comment_idx, content);
-            // submit_result_data가 정상이면 알럿 
-        })
+        if (modify_cancel.innerHTML === "등록") {
+            modify_text.addEventListener("click", (event) => {
+                let submit_result_data = await modify_submit(comment_idx, content);
+                // submit_result_data가 정상이면 알럿 
+            })
+        }
+
 
 
     }
