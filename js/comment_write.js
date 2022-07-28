@@ -347,9 +347,18 @@ comment_ul.addEventListener('click', (e) => {
         // 수정할 텍스트 
         modify_input.value = comment_content.value;
 
-        //수정 텍스트 => 등록으로 변경
+        //'수정' 텍스트 => 등록으로 변경
         let modify_text = document.getElementsByClassName(`modify${e.target.dataset.content}`);
         modify_text.innerHTML = "등록"
+
+        let modify_cancel = document.createElement("div");
+        modify_cancel.setAttribute("class", "cancel" + `${result.idx}`);
+        modify_cancel.innerHTML = "취소";
+
+        modify_cancel.addEventListener("click", (event) => {
+            modify_input.style.display = "none";
+            comment_content.style.display = "block";
+        })
 
         const content = {
             "content": modify_input.value
