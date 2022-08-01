@@ -1,6 +1,68 @@
 import culture from "../json_data/culture_data.json"  assert { type: "json" }
 
-let culture_data = JSON.parse(JSON.stringify(culture));
+
+let url_str = window.location.href;
+const local_url = new URL(url_str);
+const urlParams = local_url.searchParams;
+const culture_idx = urlParams.get('culture_idx');
+
+
+async function fetch_method(url, options) {
+
+    const result = await fetch(url, options).then((response) => {
+
+        if (response.status === 400) {
+
+            console.log(response);
+        }
+        if (response.status === 404) {
+
+            alert("찾을수 없는 페이지 입니다")
+        }
+
+        if (response.status === 204) {
+            return "deleted"
+        }
+
+        if (response.status === 200) {
+            console.log(response);
+            return response.json()
+
+        };
+
+    }).then(data => {
+        console.log(data);
+        return data
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    return result;
+
+}
+
+
+// async function get_culture_info() {
+
+//     let url = DEFAULT_CULTURE_URL + culture_idx;
+//     let options = {
+//         method: "GET",
+//         headers: {
+//             "Content-Type": "application/json",
+//             "x-access-token": document.cookie
+//         }
+//     }
+
+//     const data = await fetch_method(url, options);
+//     return data
+
+// }
+
+// let result = await get_culture_info();
+
+
+
+//let culture_data = JSON.parse(JSON.stringify(culture));
 //제목
 let title_section = document.getElementById("title");
 
