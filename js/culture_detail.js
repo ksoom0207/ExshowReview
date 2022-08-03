@@ -100,22 +100,3 @@ img.setAttribute("src", result.tumbnail);
 img.setAttribute("style", "width : 180px ; height : 240px");
 card.append(img);
 content.append(card);
-
-// 수정삭제 버튼 있다없다 유무 => json 데이터에서 유무 판단하는 데이터 보내기
-// 유저가 게시글을 작성한 유저라면?
-// 아니라면?
-
-//삭제 버튼 클릭시 이벤트
-const delete_post = () => {
-    //삭제 팝업을 띄운다.
-
-    //api 요청을 보낸다.
-}
-
-//수정 버튼 클릭시 이벤트
-const modify_post = () => {
-
-}
-
-//목록 버튼 클릭시 이벤트
-//이전 목록 상태를 불러온다.
